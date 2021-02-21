@@ -11,7 +11,7 @@ namespace TelegramBotLol.Back
 
     class LOLInfo
     {
-        const string apiKey = "RGAPI-397c11da-3b1f-4126-9965-033e4cf7c418";
+        const string apiKey = "Your-api-key";
         public struct SummonerInfo
         {
             public SummonerInfo(SummonerInfo si)
