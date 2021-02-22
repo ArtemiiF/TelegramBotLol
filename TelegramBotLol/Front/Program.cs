@@ -24,8 +24,8 @@ namespace TelegramBotLol.Front
 
             botClient.StartReceiving();
 
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
+            //Console.WriteLine("Press any key to exit");
+            //Console.ReadKey();
 
             botClient.StopReceiving();
         }
