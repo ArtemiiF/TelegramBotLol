@@ -133,7 +133,7 @@ namespace TelegramBotLol.Front
         static async void Bot_OnCallbackQuery(object sender, CallbackQueryEventArgs e)
         {
 
-            string summonerName = e.CallbackQuery.Message.Text.Substring(0, e.CallbackQuery.Message.Text.IndexOf(' '));
+            string summonerName = e.CallbackQuery.Message.Text.Substring(0, e.CallbackQuery.Message.Text.IndexOf("has"));
             string message = "empty";
 
             switch (e.CallbackQuery.Data)
