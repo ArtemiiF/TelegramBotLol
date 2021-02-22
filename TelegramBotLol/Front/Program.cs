@@ -27,7 +27,7 @@ namespace TelegramBotLol.Front
             //Console.WriteLine("Press any key to exit");
             //Console.ReadKey();
 
-            botClient.StopReceiving();
+            //botClient.StopReceiving();
         }
 
         static async void Bot_OnMessage(object sender, MessageEventArgs e)
