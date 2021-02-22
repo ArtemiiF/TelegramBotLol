@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using RiotSharp;
 using RiotSharp.Endpoints.LeagueEndpoint;
@@ -7,8 +7,6 @@ using RiotSharp.Misc;
 
 namespace TelegramBotLol.Back
 {
-
-
     class LOLInfo
     {
         const string apiKey = "Your-api-key";
@@ -44,13 +42,14 @@ namespace TelegramBotLol.Back
         }
 
         public List<SummonerInfo> summonerInfos;
-
+        
+        //Search with full info
         public LOLInfo(string SummonerName, bool quickSearch, Region region = 0)
         {
             summonerInfos = new List<SummonerInfo>();
             if (quickSearch)
             {
-                for (int i = 0; i < 19; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     summonerInfos.Add(GetName(SummonerName, (Region)i));
                 }
@@ -86,6 +85,7 @@ namespace TelegramBotLol.Back
 
                 try
                 {
+                    
                     List<LeagueEntry> rank = api.League.GetLeagueEntriesBySummonerAsync(summoner.Region, summoner.Id).Result;
 
                     if (rank[0].QueueType == "RANKED_SOLO_5x5")
@@ -171,28 +171,27 @@ namespace TelegramBotLol.Back
             }
         }
 
+        //Search with(name/level/region)
         public SummonerInfo GetName(string SummonerName, Region region)
         {
             SummonerInfo summonerInfo = new SummonerInfo("Unknown");
 
-
-            string summonername;
-
             var api = RiotApi.GetDevelopmentInstance(apiKey);
-
-            summonername = SummonerName;
 
             try
             {
-                var summoner = api.Summoner.GetSummonerByNameAsync(region, summonername).Result;
+                
+                var summoner = api.Summoner.GetSummonerByNameAsync(region, SummonerName).Result;
                 summonerInfo.name = summoner.Name;
                 summonerInfo.region = summoner.Region.ToString();
-                Console.WriteLine($"{summonerInfo.name} has been found in {summonerInfo.region}");
+                
             }
             catch
             {
+                Console.WriteLine($"{SummonerName} has not been found in {region}");
                 return summonerInfo;
             }
+            Console.WriteLine($"{SummonerName} has been found in {region}");
             return summonerInfo;
         }
     }
